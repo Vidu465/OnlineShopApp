@@ -59,7 +59,9 @@
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="@string/signin"
+                android:textAlignment="center"
+                android:textSize="18sp"/>
 
         </LinearLayout>
     </ScrollView>
