@@ -5,12 +5,9 @@ import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.onlineshopapp.R;
+import com.example.onlineshopapp.Adapter.CategoryAdapter;
 import com.example.onlineshopapp.ViewModel.MainViewModel;
 import com.example.onlineshopapp.databinding.ActivityMainBinding;
 
@@ -22,19 +19,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        binding=ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        initCateggory();
-
+        viewModel = new MainViewModel();
+        initCategory();
     }
 
-    private void initCateggory() {
+    private void initCategory() {
         binding.progressBar2Category.setVisibility(View.VISIBLE);
+
         viewModel.LoadCategory().observeForever(categoryModels -> {
-            binding.categoryView.setLayoutManager(new LinearLayoutManager(
-                    MainActivity.this,LinearLayoutManager.HORIZONTAL,false));
+            if (categoryModels != null) {
+                binding.categoryView.setLayoutManager(
+                        new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false)
+                );
+
+                binding.categoryView.setAdapter(new CategoryAdapter(categoryModels));
+                binding.categoryView.setNestedScrollingEnabled(true);
+            }
+
+            binding.progressBar2Category.setVisibility(View.GONE);
         });
     }
-
 }
