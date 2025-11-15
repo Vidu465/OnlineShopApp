@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.onlineshopapp.Domain.BannerModel;
 import com.example.onlineshopapp.Domain.CategoryModel;
+import com.example.onlineshopapp.Domain.ItemsModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,6 +41,28 @@ public class MainRepository {
         return listData;
     }
 
+    public LiveData<ArrayList<ItemsModel>> loadPopular(){
+        MutableLiveData<ArrayList<ItemsModel>>  listData=new MutableLiveData<>();
+        DatabaseReference ref=firebaseDatabase.getReference("Items");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArrayList<ItemsModel> list=new ArrayList<>();
+                for (DataSnapshot childSnapshot:snapshot.getChildren()){
+                    ItemsModel item=childSnapshot.getValue(ItemsModel.class);
+                    if(item!=null) list.add(item);
+                }
+                listData.setValue(list);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return listData;
+    }
+
     public LiveData<ArrayList<BannerModel>> loadBanner(){
         MutableLiveData<ArrayList<BannerModel>>  listData=new MutableLiveData<>();
         DatabaseReference ref=firebaseDatabase.getReference("Banner");
@@ -61,4 +84,5 @@ public class MainRepository {
         });
         return listData;
     }
+
 }
