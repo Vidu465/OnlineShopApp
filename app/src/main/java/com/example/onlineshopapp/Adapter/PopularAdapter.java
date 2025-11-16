@@ -1,13 +1,19 @@
 package com.example.onlineshopapp.Adapter;
 
 import android.content.Context;
+import android.graphics.Paint;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterInside;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.onlineshopapp.Domain.ItemsModel;
+import com.example.onlineshopapp.databinding.ViewholderPopularBinding;
 
 import java.util.ArrayList;
 
@@ -23,22 +29,40 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.Viewhold
     @NonNull
     @Override
     public PopularAdapter.Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        context=parent.getContext();
+        ViewholderPopularBinding binding=ViewholderPopularBinding.inflate(LayoutInflater.from(context),parent,false);
+
+        return new Viewholder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PopularAdapter.Viewholder holder, int position) {
+        holder.binding.titleTxt.setText(items.get(position).getTitle());
+        holder.binding.priceTxt.setText("$"+items.get(position).getPrice());
+        holder.binding.rating.Txt.setText("("+items.get(position).getRating()+")");
+        holder.binding.offPercentTxt.setText(items.get(position).getOffPercent()+"off");
+        holder.binding.oldpriceTxt.setText("$"+items.get(position).getOldPrice());
+        holder.binding.oldpriceTxt.setPaintFlags(holder.binding.oldpriceTxt.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
+        RequestOptions options=new RequestOptions();
+        options=options.transform(new CenterInside());
+
+        Glide.with(context)
+                .load(items.get(position).getPicUrl().get(0))
+                .apply(options)
+                .into(holder.binding.pic);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return items.size();
     }
 
     public class Viewholder extends RecyclerView.ViewHolder {
-        public Viewholder(@NonNull View itemView) {
-            super(itemView);
+        ViewholderPopularBinding binding;
+        public Viewholder(ViewholderPopularBinding binding) {
+            super(binding.getRoot());
+            this.binding=binding;
         }
     }
 }

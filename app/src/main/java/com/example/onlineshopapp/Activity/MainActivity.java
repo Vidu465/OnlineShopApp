@@ -32,6 +32,16 @@ public class MainActivity extends AppCompatActivity {
         viewModel = new MainViewModel();
         initCategory();
     initSlider();
+    initPopular();
+    }
+
+    private void initPopular() {
+        binding.progressBar2Popular.setVisibility(View.VISIBLE);
+        viewModel.loadPopular().observeForever(itemsModels -> {
+            if(!itemsModels.isEmpty()){
+
+            }
+        });
     }
 
     private void initSlider() {
