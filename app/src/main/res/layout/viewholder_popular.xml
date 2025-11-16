@@ -8,13 +8,23 @@
     android:background="@android:color/white">
 
     <com.google.android.material.imageview.ShapeableImageView
-        app:shapeAppearanceOverlay="@style/circleImageView"
-        android:id="@+id/imageView2"
-        android:layout_width="0dp"
-        android:layout_height="150dp"
+        android:id="@+id/pic"
+        android:layout_width="157dp"
+        android:layout_height="144dp"
         android:layout_margin="8dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/grey_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/circleImageView"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/offPercentTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="off"
+        app:layout_constraintStart_toStartOf="@+id/pic"
+        app:layout_constraintTop_toTopOf="@+id/pic" />
 </androidx.constraintlayout.widget.ConstraintLayout>
