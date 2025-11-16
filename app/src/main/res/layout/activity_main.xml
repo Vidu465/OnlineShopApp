@@ -5,23 +5,29 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".Activity.MainActivity" >
+    android:background="@color/LightGray"
+    tools:context=".Activity.MainActivity">
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:paddingBottom="80dp"
+            tools:paddingBottom="100dp">  <!-- Added padding for bottom nav bar -->
+
+            <!-- Header Section -->
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="48dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="48dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -31,10 +37,10 @@
                     app:srcCompat="@drawable/profile" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
@@ -48,9 +54,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Vihara Vidu"
-                        android:textSize="18sp"
                         android:textColor="@color/black"
-                        android:textStyle="bold"/>
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -67,84 +73,63 @@
                     app:srcCompat="@drawable/bell_icon" />
             </LinearLayout>
 
+            <!-- Search Bar Section -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <EditText
                     android:id="@+id/editTextText2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="42dp"
                     android:layout_marginEnd="8dp"
-                    android:drawableStart="@drawable/search_icon"
-                    android:drawablePadding="8dp"
-                    android:paddingHorizontal="16dp"
                     android:layout_weight="1"
-                    android:ems="10"
                     android:background="@drawable/stroke_bg"
-                    android:inputType="text"
+                    android:drawableStart="@drawable/search_icon"
+                    android:drawableEnd="@drawable/microphone"
+                    android:drawablePadding="8dp"
+                    android:ems="10"
                     android:hint="Search"
-                    android:drawableEnd="@drawable/microphone"/>
+                    android:inputType="text"
+                    android:paddingHorizontal="16dp" />
 
                 <ImageView
                     android:id="@+id/imageView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/settings_icon" />
-
             </LinearLayout>
 
+            <!-- ======================================================== -->
+            <!--    REORDERED SECTION: Category Chips are now here         -->
+            <!-- ======================================================== -->
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Category"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:textColor="@color/black"
+                android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginHorizontal="24dp"/>
+                android:text="Category"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/popularView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clipToPadding="false"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="24dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ProgressBar
-                    android:id="@+id/progressBar2Popular"
-                    style="?android:attr/progressBarStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/popularView"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/categoryView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:clipToPadding="false"
-                    android:paddingStart="24dp"
-                    android:paddingEnd="24dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -156,14 +141,27 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/categoryView"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+            <!-- Banner Slider Section -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="240dp"
-                android:layout_marginTop="24dp">
+                android:layout_height="180dp"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:text="Popular"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:layout_editor_absoluteX="24dp" />
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/viewPagerSlider"
@@ -185,6 +183,63 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <!-- Popular Items Section -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                android:text="Popular"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="230dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/popularView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar2Popular"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
     </ScrollView>
+
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+        android:layout_width="match_parent"
+        android:id="@+id/bottomNavigation"
+        android:layout_height="70dp"
+        android:background="@color/white"
+        android:padding="4dp"
+        app:cnb_menuResource="@menu/bottom_menu"
+        app:cnb_orientationMode="horizontal"
+        app:cnb_radius="50dp"
+        app:cnb_unselectedColor="@color/black"
+        app:cnb_iconColor="@color/white"
+        app:cnb_iconSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

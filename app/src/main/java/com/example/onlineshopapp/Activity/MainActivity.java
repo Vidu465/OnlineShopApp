@@ -11,10 +11,13 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 
 import com.example.onlineshopapp.Adapter.CategoryAdapter;
+import com.example.onlineshopapp.Adapter.PopularAdapter;
 import com.example.onlineshopapp.Adapter.SliderAdapter;
 import com.example.onlineshopapp.Domain.BannerModel;
+import com.example.onlineshopapp.R;
 import com.example.onlineshopapp.ViewModel.MainViewModel;
 import com.example.onlineshopapp.databinding.ActivityMainBinding;
+import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import java.util.ArrayList;
 
@@ -33,15 +36,31 @@ public class MainActivity extends AppCompatActivity {
         initCategory();
     initSlider();
     initPopular();
+    bottomNavigation();
+    }
+
+    private void bottomNavigation() {
+        binding.bottomNavigation.setItemSelected(R.id.home,true);
+        binding.bottomNavigation.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(int i) {
+
+            }
+        });
     }
 
     private void initPopular() {
         binding.progressBar2Popular.setVisibility(View.VISIBLE);
         viewModel.loadPopular().observeForever(itemsModels -> {
             if(!itemsModels.isEmpty()){
-
+                binding.popularView.setLayoutManager
+                        (new LinearLayoutManager(MainActivity.this,LinearLayoutManager.HORIZONTAL,false));
+                binding.popularView.setAdapter(new PopularAdapter(itemsModels));
+                binding.popularView.setNestedScrollingEnabled(true);
             }
+            binding.progressBar2Popular.setVisibility(View.GONE);
         });
+        viewModel.loadPopular();
     }
 
     private void initSlider() {

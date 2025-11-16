@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-<item>
-    <shape android:shape="rectangle">
-        <solid android:color="@color/Red"/>
-        <corners android:radius="10dp"/>
-        </solid>
-    </shape>
-</item>
+    <item>
+        <shape android:shape="rectangle">
+            <!-- The <solid> tag is self-closing -->
+            <solid android:color="@color/Red"/>
+
+            <!-- The <corners> tag is also self-closing -->
+            <corners android:radius="10dp"/>
+
+            <!-- The incorrect </solid> tag has been removed -->
+        </shape>
+    </item>
 </selector>

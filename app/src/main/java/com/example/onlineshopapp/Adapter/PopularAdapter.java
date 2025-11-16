@@ -39,7 +39,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.Viewhold
     public void onBindViewHolder(@NonNull PopularAdapter.Viewholder holder, int position) {
         holder.binding.titleTxt.setText(items.get(position).getTitle());
         holder.binding.priceTxt.setText("$"+items.get(position).getPrice());
-        holder.binding.rating.Txt.setText("("+items.get(position).getRating()+")");
+        holder.binding.ratingTxt.setText("("+items.get(position).getRating()+")");
         holder.binding.offPercentTxt.setText(items.get(position).getOffPercent()+"off");
         holder.binding.oldpriceTxt.setText("$"+items.get(position).getOldPrice());
         holder.binding.oldpriceTxt.setPaintFlags(holder.binding.oldpriceTxt.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
